@@ -5,7 +5,6 @@ time: "1 Hour 20 Min"
 category: "Dinner"
 tags: ["French", "Venison", "Saffron"]
 image: "/images/saffron-crusted-rack-of-venison-with-pickled-cherry-compote.jpg"
-
 ---
 
 The combination of saffron and venison is a match made in heaven, with the subtle earthy undertones of the saffron perfectly complementing the rich gamey flavor of the venison. This dish is sure to impress even the most discerning palates, and the addition of pickled cherry compote adds a delightful burst of flavor and texture to each bite. Whether you're looking to wow your dinner guests or simply treat yourself to a special meal, this saffron crusted rack of venison with pickled cherry compote is the perfect choice.
