@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Home",
+    "recipes": "Recipes",
+    "about": "About",
+    "contact": "Contact",
+    "search": "Search recipes..."
+  },
+  "home": {
+    "trending": "Trending",
+    "classics": "Classics",
+    "viewRecipe": "View Recipe"
+  },
+  "recipe": {
+    "ingredients": "Ingredients",
+    "instructions": "Instructions",
+    "prepTime": "Prep Time",
+    "cookTime": "Cook Time",
+    "difficulty": "Difficulty",
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard",
+    "print": "Print Recipe",
+    "servings": "Servings"
+  },
+  "tags": {
+    "vegan": "Vegan",
+    "vegetarian": "Vegetarian",
+    "glutenFree": "Gluten Free",
+    "quick": "30 Min",
+    "trending": "Trending"
+  },
+  "ads": {
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy",
+    "termsOfService": "Terms of Service"
+  }
+}

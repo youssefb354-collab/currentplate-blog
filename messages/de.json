@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "recipes": "Rezepte",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "search": "Rezepte suchen..."
+  },
+  "home": {
+    "trending": "Trends",
+    "classics": "Klassiker",
+    "viewRecipe": "Rezept ansehen"
+  },
+  "recipe": {
+    "ingredients": "Zutaten",
+    "instructions": "Zubereitung",
+    "prepTime": "Vorbereitung",
+    "cookTime": "Kochzeit",
+    "difficulty": "Schwierigkeit",
+    "easy": "Einfach",
+    "medium": "Mittel",
+    "hard": "Schwer",
+    "print": "Drucken",
+    "servings": "Portionen"
+  },
+  "tags": {
+    "vegan": "Vegan",
+    "vegetarian": "Vegetarisch",
+    "glutenFree": "Glutenfrei",
+    "quick": "30 Min",
+    "trending": "Trend"
+  },
+  "ads": {
+    "privacyPolicy": "Datenschutzerklärung",
+    "cookiePolicy": "Cookie-Richtlinie",
+    "termsOfService": "Nutzungsbedingungen"
+  }
+}

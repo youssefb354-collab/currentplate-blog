@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+/* Design System: "The Warm Pantry" */
+
+/* Google Fonts - imported via next/font in layout, defined here as CSS fallback */
+@theme inline {
+  /* Color Palette */
+  --color-base: #fdf8f3;
+  --color-primary: #b89b82;
+  --color-secondary: #f2e0a1;
+  --color-graphite: #2f2f2f;
+
+  /* Font Families */
+  --font-instrument-serif: "Instrument Serif", "Georgia", serif;
+  --font-figtree: "Figtree", "Helvetica Neue", sans-serif;
+
+  /* Border Radius - Organic Minimalism */
+  --radius: 8px;
+  --radius-lg: 12px;
+}
+
+/* Base body styles */
+body {
+  background-color: var(--color-base);
+  color: var(--color-graphite);
+  font-family: var(--font-figtree);
+}
+
+/* Print stylesheet - Clean Plate Print Mode */
+@media print {
+  nav,
+  header,
+  footer,
+  .ad-slot,
+  .no-print,
+  [class*="ad-"],
+  button:not(.print-preserve) {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  .recipe-content {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  img {
+    max-width: 500px !important;
+  }
+
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+
+  .ingredients-list,
+  .instructions-list {
+    page-break-inside: avoid;
+  }
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(253, 248, 243, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(184, 155, 130, 0.15);
+}
+
+/* Ingredient hover-to-strikethrough */
+.ingredient-item:hover {
+  text-decoration: line-through;
+  text-decoration-color: var(--color-primary);
+  opacity: 0.7;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Oversized step numbers */
+.step-number {
+  font-family: var(--font-instrument-serif);
+  font-size: clamp(3rem, 5vw, 5rem);
+  line-height: 1;
+  color: var(--color-primary);
+  font-weight: 400;
+}
+
+/* Sticky header shrink transition */
+.sticky-header {
+  transition: padding 0.3s ease, font-size 0.3s ease;
+}
+
+.sticky-header.shrunk {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.sticky-header.shrunk .header-title {
+  font-size: 1.25rem;
+}
+
+/* Asymmetric hero layout */
+.hero-asymmetric {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .hero-asymmetric {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Bento box grid */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Fixed ad slots to prevent CLS */
+.ad-slot-header {
+  width: 100%;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ad-slot-sidebar {
+  width: 300px;
+  min-height: 250px;
+  position: sticky;
+  top: 100px;
+}
+
+.ad-slot-infeed {
+  width: 100%;
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1024px) {
+  .ad-slot-sidebar {
+    width: 100%;
+    position: static;
+  }
+}
+
+/* Smooth micro-interactions */
+.smooth-transition {
+  transition: all 0.2s ease;
+}

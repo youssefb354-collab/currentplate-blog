@@ -1,0 +1,76 @@
+import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { Instrument_Serif, Figtree } from "next/font/google";
+import Script from "next/script";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import "../globals.css";
+
+const instrumentSerif = Instrument_Serif({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-instrument-serif",
+});
+
+const figtree = Figtree({
+  weight: ["400", "500", "600"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-figtree",
+});
+
+export const metadata: Metadata = {
+  title: {
+    default: "currentplate — Food & Drink",
+    template: "%s | currentplate",
+  },
+  description: "A premium Food & Drink blog with curated recipes and culinary trends.",
+};
+
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const messages = await getMessages();
+
+  return (
+    <html
+      lang={locale}
+      className={`${instrumentSerif.variable} ${figtree.variable} h-full`}
+    >
+      <head>
+        {/* AdSense Script - Replace ca-pub-xxxxxxxxxxxxxxxx with your client ID */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxxxx"
+          strategy="lazyOnload"
+          crossOrigin="anonymous"
+        />
+      </head>
+      <body className="flex flex-col min-h-full bg-base text-graphite font-figtree antialiased">
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          {/* Header Ad Slot - Fixed height to prevent CLS */}
+          <div className="ad-slot-header bg-base/50 border-b border-primary/10">
+            {/* AdSense Header Ad Unit - Replace data-ad-slot with your slot ID */}
+            <ins
+              className="adsbygoogle"
+              style={{ display: "block", width: "100%", height: "90px" }}
+              data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+              data-ad-slot="header-slot-id"
+              data-ad-format="horizontal"
+            />
+          </div>
+          <Header />
+          {children}
+          <Footer />
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  );
+}
