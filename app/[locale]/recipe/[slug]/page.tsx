@@ -3,6 +3,35 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import type { Metadata } from "next";
+
+type Props = {
+  params: { slug: string };
+};
+
+// Next.js runs this function behind the scenes to build the SEO before the page loads
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // 1. Fetch the data for this specific recipe
+  const recipe = getRecipeBySlug(params.slug);
+
+  // 2. Automatically map your Markdown frontmatter to Google's SEO standards!
+  return {
+    title: `${recipe.title} | CurrentPlate`,
+    description: recipe.description,
+    openGraph: {
+      title: recipe.title,
+      description: recipe.description,
+      images: [
+        {
+          url: recipe.image, // This automatically pulls your Pollinations .jpg!
+        },
+      ],
+      type: "article",
+    },
+  };
+}
+
+export default function RecipePage({ params }: Props) {
 
 export default async function SingleRecipePage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
