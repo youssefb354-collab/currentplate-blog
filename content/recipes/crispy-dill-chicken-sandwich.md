@@ -3,7 +3,7 @@ title: "Crispy Dill Chicken Sandwich"
 description: "A perfectly fried, ultra-crispy chicken breast infused with dill pickle brine, topped with tangy dill pickles and served on a toasted brioche bun."
 time: "45 Min"
 category: "Lunch"
-tags: ["Chicken", "Sandwich", "Comfort Food", "Dinner"]
+tags: ["Chicken", "Sandwich", "Comfort Food", "Dinner", "Dinner"]
 image: "/images/crispy-dill-chicken-sandwich.jpg"
 ---
 
