@@ -5,16 +5,25 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { Metadata } from "next";
 
+// Updated for Next.js 15 Promise params
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 // Next.js runs this function behind the scenes to build the SEO before the page loads
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  // 1. Fetch the data for this specific recipe
-  const recipe = getRecipeBySlug(params.slug);
+  // 1. Await the params (Required for newer Next.js versions)
+  const resolvedParams = await params;
+  
+  // 2. Fetch the data for this specific recipe
+  const recipe = getRecipeBySlug(resolvedParams.slug);
 
-  // 2. Automatically map your Markdown frontmatter to Google's SEO standards!
+  // Fallback just in case the recipe doesn't exist
+  if (!recipe) {
+    return { title: "Recipe Not Found" };
+  }
+
+  // 3. Automatically map your Markdown frontmatter to Google's SEO standards!
   return {
     title: `${recipe.title} | CurrentPlate`,
     description: recipe.description,
@@ -31,9 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function RecipePage({ params }: Props) {
-
-export default async function SingleRecipePage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function SingleRecipePage({ params }: Props) {
   const resolvedParams = await params;
   const recipe = getRecipeBySlug(resolvedParams.slug);
 
@@ -87,43 +94,4 @@ export default async function SingleRecipePage({ params }: { params: Promise<{ s
                 <h2 className="font-instrument-serif text-4xl mt-14 mb-6 text-graphite border-b border-primary/20 pb-4" {...props} />
               ),
               ul: ({node, ...props}) => (
-                <ul className="list-disc pl-6 space-y-3 mb-8 marker:text-secondary text-lg text-graphite/90" {...props} />
-              ),
-              ol: ({node, ...props}) => (
-                <ol className="list-decimal pl-6 space-y-4 mb-8 marker:text-primary marker:font-bold text-lg text-graphite/90" {...props} />
-              ),
-              li: ({node, ...props}) => (
-                <li className="pl-2 leading-relaxed" {...props} />
-              ),
-              p: ({node, ...props}) => (
-                <p className="mb-6 leading-relaxed text-lg text-graphite/90" {...props} />
-              ),
-              // Beautiful styling for Pro Tips (Blockquotes)
-              blockquote: ({node, ...props}) => (
-                <blockquote className="border-l-4 border-secondary bg-secondary/10 pl-6 py-4 pr-4 my-8 rounded-r-lg italic text-graphite/80 text-lg" {...props} />
-              ),
-              // Elegant styling for the Nutritional Info Table
-              table: ({node, ...props}) => (
-                <div className="overflow-x-auto my-10">
-                  <table className="w-full text-left border-collapse" {...props} />
-                </div>
-              ),
-              th: ({node, ...props}) => (
-                <th className="border-b-2 border-primary/20 pb-4 pt-2 px-4 font-instrument-serif text-2xl text-graphite font-normal" {...props} />
-              ),
-              td: ({node, ...props}) => (
-                <td className="border-b border-primary/10 py-4 px-4 text-graphite/80 text-lg" {...props} />
-              ),
-              strong: ({node, ...props}) => (
-                <strong className="font-semibold text-graphite" {...props} />
-              )
-            }}
-          >
-            {recipe.content}
-          </ReactMarkdown>
-        </article>
-      </div>
-
-    </main>
-  );
-}
+                <ul className="list-disc pl-6 space-y-3 mb-8 marker:text-secondary text-lg text-graphite/90" {...props
