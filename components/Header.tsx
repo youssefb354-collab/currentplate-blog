@@ -3,10 +3,12 @@
 import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation'; // <-- NEW: Imported the router
 
 export default function Header() {
   const t = useTranslations('nav');
-  const locale = useLocale(); // Added locale to ensure links work perfectly
+  const locale = useLocale();
+  const router = useRouter(); // <-- NEW: Initialized the router
   const [isScrolled, setIsScrolled] = useState(false);
   const [showMegaMenu, setShowMegaMenu] = useState(false);
 
@@ -17,6 +19,18 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // <-- NEW: The function that runs when you press Enter
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Stops the page from doing a hard refresh
+    const formData = new FormData(e.currentTarget);
+    const searchQuery = formData.get('query');
+    
+    if (searchQuery) {
+      // Redirects to your recipe library with the search term!
+      router.push(`/${locale}/recipes?query=${encodeURIComponent(searchQuery as string)}`);
+    }
+  };
 
   return (
     <header
@@ -66,7 +80,6 @@ export default function Header() {
                     {['Salads', 'Pasta', 'Pizza', 'Juice', 'Sauce'].map((item) => (
                       <li key={item}>
                         <Link href={`/${locale}/category/${item.toLowerCase()}`} className="text-sm text-graphite/70 hover:text-primary smooth-transition flex items-center">
-                          {/* Kept the elegant little dot from the previous design! */}
                           <span className="inline-block w-1.5 h-1.5 rounded-full bg-secondary mr-3" />
                           {item}
                         </Link>
@@ -88,16 +101,18 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <div className="relative">
+          {/* <-- NEW: Replaced the div with a form wrapper --> */}
+          <form onSubmit={handleSearch} className="relative">
             <input
               type="search"
+              name="query" // <-- NEW: Added name so FormData can read it
               placeholder={t('search')}
               className="pl-8 pr-4 py-1.5 text-sm bg-base border border-primary/20 rounded-full focus:outline-none focus:border-primary w-40 lg:w-64 smooth-transition"
             />
             <svg className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-graphite/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-          </div>
+          </form>
         </div>
       </div>
     </header>
