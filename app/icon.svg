@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Background -->
+  <rect width="256" height="256" fill="#f4f4f0" rx="64"/>
+  
+  <!-- Outer Plate/Ring -->
+  <circle cx="128" cy="128" r="88" fill="none" stroke="#1c1c1c" stroke-width="12" stroke-linecap="round"/>
+  
+  <!-- Inner Geometric 'C' -->
+  <path d="M158 92 A 48 48 0 1 0 158 164" fill="none" stroke="#1c1c1c" stroke-width="16" stroke-linecap="round"/>
+  
+  <!-- The 'Current' Line -->
+  <line x1="128" y1="92" x2="128" y2="164" stroke="#1c1c1c" stroke-width="12" stroke-linecap="round"/>
+</svg>
