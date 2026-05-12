@@ -1,4 +1,4 @@
-import { useTranslations, useLocale } from 'next-intl';
+import { getTranslations, getLocale } from 'next-intl/server'; // <-- Fixed Imports!
 import AdSlot from '@/components/AdSlot';
 import { getAllRecipes } from '@/lib/recipes';
 import Link from 'next/link';
@@ -9,8 +9,9 @@ export default async function RecipeIndex({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
-  const t = useTranslations('nav');
-  const locale = useLocale();
+  // <-- Fixed: Using the proper Server-Side translation tools
+  const t = await getTranslations('nav');
+  const locale = await getLocale();
 
   // 1. Unwrap the searchParams to see if the user is searching for something
   const resolvedSearchParams = await searchParams;
@@ -40,7 +41,6 @@ export default async function RecipeIndex({
             {query ? `Results for "${rawQuery}"` : "Recipe Library"}
           </h1>
           
-          {/* 3. Wrapped the on-page search bar in a form so it works natively! */}
           <form method="GET" action={`/${locale}/recipes`} className="relative max-w-xl mx-auto">
             <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-graphite/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -48,7 +48,7 @@ export default async function RecipeIndex({
             <input
               type="search"
               name="query"
-              defaultValue={rawQuery} // This keeps the word they searched for in the box!
+              defaultValue={rawQuery}
               placeholder={t('search')}
               className="w-full pl-12 pr-4 py-3 bg-white/80 backdrop-blur-sm border border-primary/20 rounded-lg focus:outline-none focus:border-primary text-graphite smooth-transition"
             />
@@ -56,7 +56,7 @@ export default async function RecipeIndex({
         </div>
       </section>
 
-      {/* Filter Tags - Upgraded from buttons to functional Links! */}
+      {/* Filter Tags */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-wrap gap-3 justify-center">
           {filters.map((filter) => (
@@ -107,7 +107,6 @@ export default async function RecipeIndex({
             ))}
           </div>
         ) : (
-          /* Empty State if the search finds nothing */
           <div className="text-center py-20 bg-white/50 rounded-2xl border border-primary/10">
             <h2 className="font-instrument-serif text-3xl text-graphite mb-3">No recipes found</h2>
             <p className="text-graphite/70">
