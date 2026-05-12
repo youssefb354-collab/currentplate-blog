@@ -7,6 +7,27 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "../globals.css";
 
+export const metadata: Metadata = {
+  title: "CurrentPlate | Minimalist Recipe Blog",
+  description: "Discover minimalist, elegant, and easy-to-follow recipes for everyday cooking.",
+  openGraph: {
+    title: "CurrentPlate",
+    description: "Discover minimalist, elegant, and easy-to-follow recipes for everyday cooking.",
+    url: "https://currentplate.com",
+    siteName: "CurrentPlate",
+    images: [
+      {
+        url: "/images/currentplate-banner.jpg", // Add a nice default image to your public/images folder!
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
 const instrumentSerif = Instrument_Serif({
   weight: "400",
   subsets: ["latin"],
