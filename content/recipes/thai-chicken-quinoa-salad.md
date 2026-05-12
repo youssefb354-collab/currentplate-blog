@@ -2,7 +2,7 @@
 title: "Thai Chicken Quinoa Salad"
 description: "A vibrant, protein-packed salad featuring nutty quinoa, tender shredded chicken, and crisp vegetables tossed in a creamy, savory peanut-lime dressing."
 time: "30 Min"
-category: ["Lunch" , "Salads"]
+category: "Salads"
 tags: ["Healthy", "Chicken", "Meal Prep"]
 image: "/images/thai-chicken-quinoa-salad.jpg"
 ---
