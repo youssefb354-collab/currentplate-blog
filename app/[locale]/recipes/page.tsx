@@ -84,6 +84,7 @@ export default async function RecipeIndex({
                       alt={recipe.title}
                       fill
                       className="object-cover group-hover:scale-105 smooth-transition"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // <-- Added this to fix terminal warnings
                     />
                   </div>
                   <div className="p-5 space-y-3 flex-1 flex flex-col">

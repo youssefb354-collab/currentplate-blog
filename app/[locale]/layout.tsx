@@ -95,8 +95,8 @@ export default async function LocaleLayout({
       </head>
       <body className="flex flex-col min-h-full bg-base text-graphite font-figtree antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          {/* Header Ad Slot - Fixed height to prevent CLS */}
-          <div className="ad-slot-header bg-base/50 border-b border-primary/10">
+          {/* Header Ad Slot - Fixed height to prevent CLS, hidden on print */}
+          <div className="ad-slot-header bg-base/50 border-b border-primary/10 print:hidden">
             {/* AdSense Header Ad Unit - Replace data-ad-slot with your slot ID */}
             <ins
               className="adsbygoogle"
@@ -106,9 +106,18 @@ export default async function LocaleLayout({
               data-ad-format="horizontal"
             />
           </div>
-          <Header />
+          
+          {/* Hide Header on Print */}
+          <div className="print:hidden">
+            <Header />
+          </div>
+          
           {children}
-          <Footer />
+          
+          {/* Hide Footer on Print */}
+          <div className="print:hidden">
+            <Footer />
+          </div>
         </NextIntlClientProvider>
       </body>
     </html>
