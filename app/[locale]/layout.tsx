@@ -60,7 +60,10 @@ export default async function LocaleLayout({
       className={`${instrumentSerif.variable} ${figtree.variable} h-full`}
     >
       <head>
-        {/* AdSense Script - Successfully updated with your client ID */}
+        {/* The foolproof Meta Tag for Google Verification */}
+        <meta name="google-adsense-account" content="ca-pub-5151856074386100" />
+
+        {/* Keep the AdSense Script for when you actually show ads */}
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5151856074386100"
