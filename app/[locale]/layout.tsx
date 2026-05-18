@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: "CurrentPlate",
     images: [
       {
-        url: "/images/currentplate-banner.jpg", // Add a nice default image to your public/images folder!
+        url: "/images/currentplate-banner.jpg", 
         width: 1200,
         height: 630,
       },
@@ -60,11 +60,11 @@ export default async function LocaleLayout({
       className={`${instrumentSerif.variable} ${figtree.variable} h-full`}
     >
       <head>
-        {/* AdSense Script - Replace ca-pub-xxxxxxxxxxxxxxxx with your client ID */}
+        {/* AdSense Script - Successfully updated with your client ID */}
         <Script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxxxx"
-          strategy="lazyOnload"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5151856074386100"
+          strategy="afterInteractive"
           crossOrigin="anonymous"
         />
 
@@ -97,11 +97,11 @@ export default async function LocaleLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           {/* Header Ad Slot - Fixed height to prevent CLS, hidden on print */}
           <div className="ad-slot-header bg-base/50 border-b border-primary/10 print:hidden">
-            {/* AdSense Header Ad Unit - Replace data-ad-slot with your slot ID */}
+            {/* AdSense Header Ad Unit - Updated with your client ID */}
             <ins
               className="adsbygoogle"
               style={{ display: "block", width: "100%", height: "90px" }}
-              data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+              data-ad-client="ca-pub-5151856074386100"
               data-ad-slot="header-slot-id"
               data-ad-format="horizontal"
             />
